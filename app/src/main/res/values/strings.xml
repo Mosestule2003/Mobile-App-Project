@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Schedule App</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string-array name="locations">
+        <item>Carveal Inspection Center</item>
+        <item>Downtown Police Station</item>
+        <item>West Mall Parking</item>
+    </string-array>
+    <string name="back_button_desc">Navigate back</string>
+
+</resources>

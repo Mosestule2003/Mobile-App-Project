@@ -1,0 +1,7 @@
+<resources>
+    <!-- Dark theme overrides -->
+    <color name="background">#121212</color>
+    <color name="surface">#1E1E1E</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#BDBDBD</color>
+</resources>
