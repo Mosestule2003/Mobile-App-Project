@@ -1,140 +1,150 @@
 Carveal Mobile App - Technical Documentation
 
-Overview
+Carveal is an Android application that provides an integrated platform for vehicle diagnostics, service booking, notifications, and real-time weather updates. The application utilizes AI-based APIs for vehicle analysis, integrates a comprehensive booking workflow, and incorporates persistent storage for notifications. The app is designed to handle multiple fragments for seamless navigation and data sharing between components.
 
-Carveal is an Android application that provides an integrated platform for vehicle diagnostics, service booking, notifications, and real-time weather updates. The application leverages AI-based APIs for vehicle analysis, supports a comprehensive booking workflow, and implements persistent storage for notifications.
-
-Note: The login and sign-in modules are currently implemented as mockups. "THESE ARE TO BE CHANGED"
+Note: The login and sign-in modules are currently implemented as mockups. THESE ARE TO BE CHANGED and replaced with functional authentication mechanisms.
 
 Architecture & Modules
 
 1. Application Layers
 
 - Presentation Layer:
-  - Activities & Fragments: Manage user interactions and UI rendering.
-  - RecyclerView & Adapters: Dynamically display notifications and other lists.
-  
-- Business Logic Layer:  
-  - Booking Flow: Handles scheduling, confirmation, and payment processing.
-  - Notification Management: Manages real-time notifications, including time updates.
-  - API Integration: Interacts with external APIs for weather updates and AI-driven vehicle analysis.
+  - Activities & Fragments: These components handle user interactions and UI rendering. Each fragment or activity corresponds to a distinct screen or feature (e.g., booking, notifications, vehicle diagnostics).
+  - RecyclerView & Adapters: Used for dynamic data binding to the UI. The main menu uses a RecyclerView to manage the dynamic listing of menu items, while notifications and booking details are handled similarly through RecyclerView adapters.
+  - Core Actionables: 
+    - Login, Sign-Up, and Onboarding: Implemented as mockups with placeholder screens, to be replaced with actual authentication logic in future iterations.
+    - Main Menu: Managed by RecyclerView, dynamically populated with menu items, allowing users to navigate to different fragments.
+    - Bottom Navigation Bar: Contains interactive icons to navigate between fragments such as booking, notifications, vehicle analysis, and weather updates.
 
-- Data Layer:  
-  - SharedPreferences with Gson: Persists notifications locally.
-  - Parcelable Data Objects: Enables efficient inter-activity communication (e.g., `BookingData`).
+- Business Logic Layer:
+  - Booking Flow: Includes logic for service booking, date and time selection, payment handling, and confirmation. This flow connects the scheduling interface (`activity_schedule`) to the confirmation (`activity_confirmation`), payment (`activity_payment`), and notification displays.
+  - Notification Management: Responsible for handling real-time notifications, including displaying and updating notification lists through periodic updates. Utilizes a Handler for polling notifications every 60 seconds.
+  - API Integration: Manages interactions with external APIs, such as weather data and AI-based vehicle diagnostics. The integration layer handles network requests (using OkHttp) and parses the responses to display relevant data.
 
-### 2. Key Modules & Components
+- Data Layer:
+  - SharedPreferences with Gson: Used to persist notifications and other transient data locally for offline use.
+  - Parcelable Data Objects: Booking data, vehicle diagnostics, and other objects are serialized using Parcelable for efficient inter-activity communication (e.g., `BookingData`).
+  - Local Database: For storing user preferences, historical bookings, and AI analysis results.
 
-#### Loading & Authentication
+---
 
-- Loading_page:  
-  - Plays a video (logo animation) using `VideoView` from the `res/raw` directory.
-  - Utilizes a `Handler` to transition after a 3000ms delay to `sign_in_page`.
-  
-- `sign_in_page`:  
-  - Implements edge-to-edge layout handling using `EdgeToEdge.enable(this)` and `WindowInsetsCompat`.
-  - Currently a mockup; authentication logic will be implemented by a designated team member.
+2. Key Modules & Components
 
-#### Booking Flow
+### Loading & Authentication
 
-- `activity_schedule`:  
-  - UI Elements:  
-    - `CalendarView`: For date selection.
-    - `RadioGroup`: For choosing a time slot.
+- Loading_page:
+  - Plays an animated logo using `VideoView` sourced from the `res/raw` directory.
+  - Uses `Handler` to introduce a delay of 3 seconds (3000ms) before transitioning to `sign_in_page`.
+
+- sign_in_page:
+  - Implements edge-to-edge layout with `EdgeToEdge.enable(this)` and `WindowInsetsCompat` to handle modern Android UI design considerations (e.g., notch, navigation bar).
+  - Current implementation serves as a mockup; functional authentication logic (e.g., Firebase, OAuth) will be implemented later by the designated team member.
+
+### Booking Flow
+
+- activity_schedule:
+  - UI Elements:
+    - `CalendarView`: Allows users to select a service date.
+    - `RadioGroup`: Provides a selection mechanism for time slots.
     - `Spinner`: For selecting a pickup location.
-  - Data Passing:  
-    - Captures and formats user selections.
-    - Bundles data (including pricing details) into an `Intent` for `activity_confirmation`.
-    
-- `activity_confirmation`:  
-  - Displays selected booking details (date, time, location).
+  - Data Passing:
+    - Captures user inputs and formats them into a data bundle.
+    - This data is passed to `activity_confirmation` through an Intent.
+
+- activity_confirmation:
+  - Displays the formatted booking details (date, time, location) captured in `activity_schedule`.
   - Provides options to cancel or confirm the booking.
-  - On confirmation, triggers the payment workflow by launching `activity_payment`.
-  
-- `activity_payment`:  
-  - Handles payment processing with UI elements including:
-    - `RadioGroup` for payment options.
-    - `CardView` for card selection and display.
-    - Input fields (`EditText`) for card details.
-  - On payment confirmation, navigates to the notifications screen.
-  
-- Detail Views:  
-  - `activity_booking_confirmation_detail`: Presents detailed booking confirmation data.
-  - `activity_booking_reminder_detail`: Displays booking reminders with dynamically calculated appointment times.
+  - On confirmation, triggers the payment workflow and launches `activity_payment`.
 
-#### Notifications
+- activity_payment:
+  - UI elements:
+    - `RadioGroup`: For payment method selection.
+    - `CardView`: Displays selected payment method visually.
+    - `EditText`: For entering payment details.
+  - After payment confirmation, the app transitions to the notification screen (`activity_notification`).
 
-- `activity_notification`:  
-  - Uses a `RecyclerView` combined with a `NotificationAdapter` to list notifications.
-  - Implements periodic updates (every 60 seconds) via a `Handler` that triggers `notifyDataSetChanged()`.
+- Detail Views:
+  - activity_booking_confirmation_detail: Displays detailed confirmation data of the booking.
+  - activity_booking_reminder_detail: Provides reminder notifications with dynamically calculated appointment times.
+
+### Notifications
+
+- activity_notification:
+  - Uses a `RecyclerView` coupled with a `NotificationAdapter` to dynamically display a list of notifications.
+  - The notification list is updated every 60 seconds via a `Handler` that calls `notifyDataSetChanged()` to refresh the list.
   
-- `NotificationAdapter`:  
-  - Binds `Notification` objects to the UI.
-  - Formats relative timestamps (minutes/hours/days ago).
-  - Sets icons based on notification type (e.g., booking confirmation, booking reminder).
-  - Handles click events to launch detailed views using `Intent` routing.
+- NotificationAdapter:
+  - Binds `Notification` objects to RecyclerView items.
+  - Implements dynamic timestamp formatting (minutes/hours/days ago) for user-friendly readability.
+  - Each notification type (e.g., booking confirmation, reminder) has associated icons and click behavior to open relevant details through `Intent` routing.
 
-- `NotificationManager`:  
-  - Manages the persistence of notifications using `SharedPreferences`.
-  - Serializes and deserializes a list of `Notification` objects with Gson.
-  - Implements methods:
-    - `saveNotification()`: Inserts new notifications at the head of the list.
-    - `loadNotifications()`: Retrieves persisted notifications.
+- NotificationManager:
+  - Manages notification persistence in local storage via `SharedPreferences`.
+  - Serialization and deserialization of `Notification` objects using Gson for efficient data retrieval.
+  - Core methods:
+    - `saveNotification()`: Inserts a new notification at the head of the list.
+    - `loadNotifications()`: Retrieves notifications from persistent storage.
     - `saveNotifications()`: Commits updates to local storage.
 
-#### AI and Vehicle Analysis
+### AI and Vehicle Analysis
 
-- `activity_vehicle_info_analysis`:  
-  - Integrates with an external AI API (via OkHttp) to retrieve potential vehicle concerns.
-  - Constructs a JSON payload with vehicle details (model, year, transmission, fuel type) for the API.
-  - Parses the API response asynchronously and displays the results.
-  - On confirmation, directs users to `activity_schedule` to book a service.
-  
-- `BookingData`:  
-  - Implements `Parcelable` to encapsulate booking details:
-    - Fields: date, time, location, total price, and appointment time.
-  - Facilitates efficient data passing between activities.
+- activity_vehicle_info_analysis:
+  - Interfaces with an external AI API via OkHttp to retrieve potential vehicle concerns.
+  - Constructs a JSON payload with vehicle details (e.g., model, year, transmission type, fuel type) and sends it to the API.
+  - Handles the asynchronous response and updates the UI with vehicle diagnostics.
+  - On successful analysis, the user is redirected to `activity_schedule` to book a service.
 
-#### Weather Updates
+- BookingData:
+  - Implements Parcelable for seamless data passing between activities.
+  - Fields include: date, time, location, total price, and appointment time.
 
-- `activity_weather_detail`:  
-  - Displays weather details by invoking `WeatherService`.
-  
-- `WeatherService`:  
-  - Fetches current weather conditions from the WeatherAPI.
-  - Implements asynchronous network requests (via deprecated `AsyncTask` in the current version; consider migrating to modern alternatives such as `ExecutorService` or Kotlin Coroutines).
-  - Parses JSON response to extract:
-    - Location, condition text, temperature in Celsius, and a flag indicating if the weather is favorable.
-  - Provides a callback mechanism (`WeatherCallback`) to deliver results to the UI.
+### Weather Updates
 
-## Development & Interaction
+- activity_weather_detail:
+  - Displays detailed weather information fetched via the `WeatherService` class.
+
+- WeatherService:
+  - Fetches real-time weather data from the WeatherAPI using an asynchronous network request.
+  - The response is parsed to extract critical information such as location, condition text, temperature (in Celsius), and whether the weather is favorable for outdoor activities.
+  - Implements a callback mechanism (`WeatherCallback`) to update the UI with the parsed weather data.
+
+---
+
+Development & Interaction
 
 ### How to Run
 
-1. Project Setup:  
-   - Ensure all dependencies (including OkHttp, Gson, and AndroidX libraries) are properly configured in your `build.gradle` files.
-   - Verify that API keys (for WeatherAPI and AI API) are correctly set in their respective classes.
+1. Project Setup:
+   - Ensure dependencies (e.g., OkHttp, Gson, AndroidX libraries) are configured in the `build.gradle` files.
+   - API keys (WeatherAPI, AI API) should be correctly set in respective classes for proper functionality.
 
-2. Launching the Application:  
-   - The app is configured to start with `Loading_page`, which automatically navigates to `sign_in_page` after a brief video animation.
-   - Follow the booking flow to test scheduling, confirmation, and payment functionalities.
+2. Launching the Application:
+   - The app starts with the `Loading_page`, which transitions to the `sign_in_page` after a 3-second animation.
+   - Core actions like login, sign-up, onboarding, main menu navigation via RecyclerView, and bottom navbar functionality should be thoroughly tested in this phase.
 
-3. Testing Notifications:  
-   - Notifications are automatically added to the `NotificationManager` and displayed in `activity_notification`.
-   - Use the developer console or simulate API responses to test various notification types.
+3. Testing Notifications:
+   - Notifications are automatically added to `NotificationManager` and displayed in `activity_notification`.
+   - Use simulated API responses to test notification types and UI behavior.
 
-4. Network Requests & API Integration:  
-   - Ensure network connectivity.
-   - Test API endpoints (weather and AI vehicle analysis) by simulating or using valid parameters.
+4. Network Requests & API Integration:
+   - Ensure network connectivity for testing API endpoints (Weather and AI vehicle analysis).
+   - Verify proper handling of network errors and asynchronous responses.
+
+---
 
 Future Enhancements
 
-- User Profile Implementation:  
-  - Pending development; will integrate user data display and profile management.
+- User Profile Implementation:
+  - User profile management features (data display, editing) are in the planning phase.
   
-- AI Implementation Enhancements:  
-  - The RecyclerView component will be extended to display dynamic AI analysis data.
-  - Additional UI actions will be integrated to support AI-driven insights.
+- AI Implementation Enhancements:
+  - Dynamic display of AI analysis data within the RecyclerView will be expanded.
+  - Additional actions will be added to the UI for a more intuitive experience.
 
 - Authentication:
-  - Replace the mockup sign-in module with fully functional authentication logic as developed by the designated team member.
+  - Mockup sign-in will be replaced with a fully functional authentication system (e.g., Firebase Authentication, OAuth2).
+
+- Navigation & Data Passing Enhancements:
+  - Ensure that vehicle data is correctly passed to `activity_vehicle_info_analysis` and other related fragments via Intents.
+  - Refining bottom navigation bar to include intuitive navigation with actionable icons for accessing key app features (booking, notifications, vehicle analysis).
+
