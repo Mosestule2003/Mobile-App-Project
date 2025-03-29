@@ -11,7 +11,19 @@ public class activity_weather_detail extends AppCompatActivity {
         setContentView(R.layout.activity_weather_detail);
 
         TextView detailText = findViewById(R.id.detailText);
-        detailText.setText("Weather Details");
-        // Display weather details using the passed BookingData.
+
+        String location = "New York";
+
+        WeatherService.checkWeather(location, new WeatherService.WeatherCallback() {
+            @Override
+            public void onWeatherResult(String location, String condition, double temperature, boolean isFavorable) {
+                String weatherDetails = "Location: " + location + "\n" +
+                        "Condition: " + condition + "\n" +
+                        "Temperature: " + temperature + "°C\n" +
+                        "Weather is favorable: " + (isFavorable ? "Yes" : "No");
+
+                detailText.setText(weatherDetails);
+            }
+        });
     }
 }

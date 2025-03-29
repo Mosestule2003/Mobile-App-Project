@@ -56,7 +56,6 @@ public class BookingData implements Parcelable {
         dest.writeLong(appointmentTime);
     }
 
-    // NEW GETTERS:
     public String getLocation() {
         return location;
     }

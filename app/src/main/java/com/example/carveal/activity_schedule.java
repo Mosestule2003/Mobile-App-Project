@@ -26,17 +26,13 @@ public class activity_schedule extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
 
-        // Initialize Views
         calendarView = findViewById(R.id.calendarView);
         timeGroup = findViewById(R.id.timeGroup);
         spinnerLocation = findViewById(R.id.spinnerLocation);
 
-        // Set default date to today
         selectedDate = new java.text.SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
 
-        // Setup Date Picker
         calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-            // Month is 0-based in CalendarView
             selectedDate = String.format(Locale.getDefault(), "%02d/%02d/%d", dayOfMonth, month + 1, year);
         });
 
@@ -49,31 +45,26 @@ public class activity_schedule extends Activity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerLocation.setAdapter(adapter);
 
-        // Confirm Button Click Handler
         findViewById(R.id.btnConfirm).setOnClickListener(v -> {
             getSelectedTime();
             selectedLocation = spinnerLocation.getSelectedItem().toString();
 
-            // Validate selections
             if (selectedTime == null || selectedTime.isEmpty()) {
                 Toast.makeText(this, "Please select a pickup time", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // Create confirmation intent
             Intent intent = new Intent(activity_schedule.this, activity_confirmation.class);
             intent.putExtra("date", selectedDate);
             intent.putExtra("time", selectedTime);
             intent.putExtra("location", selectedLocation);
 
-            // Add pricing data if needed
             intent.putExtra("base_price", 80000);
             intent.putExtra("service_charge", 5000);
 
             startActivity(intent);
         });
 
-        // Cancel Button Click Handler
         findViewById(R.id.btnCancel).setOnClickListener(v -> finish());
     }
 

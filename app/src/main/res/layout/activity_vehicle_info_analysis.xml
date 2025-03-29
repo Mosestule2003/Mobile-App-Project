@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/bottom_border"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:paddingVertical="8dp">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:padding="12dp"
+                android:scaleType="centerInside"
+                android:contentDescription="Back button"
+                android:src="@drawable/ic_back"
+                android:background="?attr/selectableItemBackgroundBorderless"/>
+
+            <TextView
+                android:id="@+id/modelText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2021 Mazda CX-3 GS AWD"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_marginEnd="20dp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/priceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$20,599 CAD"
+            android:textSize="18sp"
+            android:textColor="@color/green"/>
+
+        <TextView
+            android:id="@+id/locationText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kamloops, BC"
+
+            android:textSize="16sp"
+            android:layout_marginBottom="24dp"/>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="4"
+            android:padding="15dp"
+            android:background="@drawable/round_border"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:text="Mileage:"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+
+                android:padding="4dp"/>
+            <TextView
+                android:id="@+id/mileageText"
+
+                android:text="28,390 km"
+                android:padding="4dp"/>
+
+            <TextView
+                android:text="Year:"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+
+                android:padding="4dp"/>
+            <TextView
+                android:id="@+id/yearText"
+                android:text="2021"
+                android:padding="4dp"/>
+
+            <TextView
+                android:text="Transmission:"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:padding="4dp"/>
+            <TextView
+                android:id="@+id/transmissionText"
+                android:text="Automatic"
+                android:padding="4dp"/>
+
+            <TextView
+                android:text="Fuel:"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:padding="4dp"/>
+            <TextView
+                android:id="@+id/fuelText"
+                android:text="Gasoline"
+                android:padding="4dp"/>
+        </GridLayout>
+
+        <TextView
+            android:text="Potential Concerns"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/black"
+            android:layout_height="20dp" android:layout_width="match_parent"/>
+
+        <TextView
+            android:id="@+id/concernsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Experience the perfect blend of performance and comfort..."
+            android:padding="16dp"
+            android:background="@drawable/round_border"
+            android:layout_marginBottom="24dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingTop="8dp">
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:text="Cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#ffffff" />
+
+            <Button
+                android:id="@+id/btnConfirm"
+                android:text="Confirm"
+                android:layout_marginLeft="15dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

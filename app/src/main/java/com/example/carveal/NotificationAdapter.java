@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -42,7 +44,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.title.setText(notification.getTitle());
         holder.time.setText(getTimeAgo(notification.getTimestamp()));
 
-        // For booking_reminder: update message with minutes remaining until appointment.
         if ("booking_reminder".equalsIgnoreCase(notification.getType()) && notification.hasBookingData()) {
             long now = System.currentTimeMillis();
             long appointmentTime = notification.getBookingData().getAppointmentTime();
@@ -50,21 +51,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             long minutesRemaining = TimeUnit.MILLISECONDS.toMinutes(diffMillis);
             holder.message.setText("Appointment in " + minutesRemaining + " minutes");
             setIconBasedOnType(holder.icon, notification.getType());
-        }
-        // For weather_caution: check weather and update icon/message accordingly.
-        else if ("weather_caution".equalsIgnoreCase(notification.getType()) && notification.hasBookingData()) {
-            String location = notification.getBookingData().getLocation();
-            WeatherService.checkWeather(location, isFavorable -> {
-                if (isFavorable) {
-                    holder.icon.setImageResource(R.drawable.ic_weather_alert_danger);
-                    holder.message.setText("Weather is good for travel.");
-                } else {
-                    holder.icon.setImageResource(R.drawable.ic_weather_alert);
-                    holder.message.setText("Weather caution: conditions are poor.");
-                }
-            });
-        }
-        else {
+        } else {
             holder.message.setText(notification.getMessage());
             setIconBasedOnType(holder.icon, notification.getType());
         }
@@ -79,17 +66,17 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 case "booking_reminder":
                     intent = new Intent(v.getContext(), activity_booking_reminder_detail.class);
                     break;
-                case "weather_caution":
-                    intent = new Intent(v.getContext(), activity_weather_detail.class);
-                    break;
                 default:
                     intent = new Intent(v.getContext(), activity_notification_detail.class);
                     break;
             }
+
             if (notification.hasBookingData()) {
-                intent.putExtra("bookingData", notification.getBookingData());
+                intent.putExtra("bookingTitle", notification.getTitle());
+                intent.putExtra("appointmentTimeMillis", notification.getBookingData().getAppointmentTime());
+                intent.putExtra("bookingMessage", notification.getMessage());
             }
-            intent.putExtra("notificationType", notification.getType());
+
             v.getContext().startActivity(intent);
         });
     }
@@ -101,9 +88,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 break;
             case "booking_reminder":
                 imageView.setImageResource(R.drawable.ic_booking_reminder);
-                break;
-            case "weather_caution":
-                imageView.setImageResource(R.drawable.ic_weather_alert);
                 break;
             default:
                 imageView.setImageResource(R.drawable.ic_default_notification);

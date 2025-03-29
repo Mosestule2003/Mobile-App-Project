@@ -47,7 +47,10 @@ public class activity_notification extends AppCompatActivity {
         adapter = new NotificationAdapter(notifications);
         recyclerView.setAdapter(adapter);
         adapter.startTimeUpdates();
+
     }
+
+
 
     @Override
     protected void onDestroy() {
