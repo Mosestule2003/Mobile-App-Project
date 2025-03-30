@@ -33,7 +33,8 @@ public class activity_booking_confirmation_detail extends Activity {
         }
 
         btnBack.setOnClickListener(v -> {
-            Intent backIntent = new Intent(activity_booking_confirmation_detail.this, activity_notification.class);
+            Intent backIntent = new Intent(activity_booking_confirmation_detail.this, MainActivity.class);
+            backIntent.putExtra("TAB_POSITION",2);
             startActivity(backIntent);
             finish();
         });

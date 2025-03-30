@@ -113,6 +113,8 @@ public class CarDetail extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //start intent schedule viewing
+                        Intent intent1 = new Intent(v.getContext(), activity_vehicle_info_analysis.class);
+
                     }
                 });
 

@@ -50,7 +50,8 @@ public class activity_booking_reminder_detail extends AppCompatActivity {
         txtBookingMessage.setText(bookingMessage != null ? bookingMessage : "No message provided");
 
         btnBack.setOnClickListener(v -> {
-            Intent backIntent = new Intent(activity_booking_reminder_detail.this, activity_notification.class);
+            Intent backIntent = new Intent(activity_booking_reminder_detail.this, MainActivity.class);
+            backIntent.putExtra("TAB_POSITION",2);
             startActivity(backIntent);
             finish();
         });
