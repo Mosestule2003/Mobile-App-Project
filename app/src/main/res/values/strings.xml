@@ -1,4 +1,81 @@
 <resources>
+
+    <resources>
+        <string name="app_name">Carveal App</string>
+        <string name="title_activity_landing_page">LandingPage</string>
+
+        <string name="feature">Featured Cars</string>
+        <string name="fea_sub">Handpicked deals just for you</string>
+
+        <string name="location">Kamloops, BC</string>
+
+        <string name="hello_blank_fragment">Hello</string>
+
+        <string-array name="model">
+            <item>2021 Mazda CX-3 GS AWD</item>
+            <item>2021 Mazda CX-3 GS AWD 1</item>
+            <item>2021 Mazda CX-3 GS AWD 2</item>
+        </string-array>
+
+        <string-array name="mileage">
+            <item>28390</item>
+            <item>28391</item>
+            <item>28392</item>
+        </string-array>
+
+        <string-array name="price">
+            <item>20599</item>
+            <item>21599</item>
+            <item>22599</item>
+        </string-array>
+
+        <string name="description">Description</string>
+        <string name="description_text">Experience the perfect blend of performance and comfort with this  pre-owned 2021 Mazda CX-3 GS. With only 26,930 kilometers on the  odometer, this compact crossover offers a like-new driving experience  with the added value of pre-owned pricing. Enjoy enhanced comfort on  every drive with premium features such as heated seats and a heated  steering wheel, designed to keep you cozy during cold weather. Combining Mazda s renowned design, efficiency, and reliability, the CX-3 GS is  ready to elevate your daily commute or weekend adventures.</string>
+
+        <string name="verified">Verified by Carveal</string>
+        <string name="verified_text">This vehicle has passed our 150-point inspection</string>
+
+        <string name="contact">Contact</string>
+        <string name="purchase">Purchase</string>
+
+        <string name="messages">Messages</string>
+
+        <string-array name="names">
+            <item>John Smith</item>
+            <item>Emily Johnson</item>
+            <item>Michael Brown</item>
+            <item>Jessica Williams</item>
+            <item>David Jones</item>
+        </string-array>
+
+        <string-array name="time">
+            <item>1h</item>
+            <item>2h</item>
+            <item>3h</item>
+            <item>4h</item>
+            <item>5h</item>
+        </string-array>
+
+        <string-array name="messages_list">
+            <item>Hi, I am interested in the car you listed. Is it still available?</item>
+            <item>Yes, the car is still available. Would you like to schedule a test drive?</item>
+            <item>Can you provide more details about the car condition?</item>
+            <item>The car is in excellent condition with a full service history.</item>
+            <item>What is your asking price for the car?</item>
+        </string-array>
+
+        <string name="set">Settings</string>
+        <string name="current_name">Admin</string>
+        <string name="current_email">admin@example.com</string>
+        <string name="current_phone">123-456-7890</string>
+        <string name="current_address">123 Main St, Kamloops, BC</string>
+
+        <string name="sign_in">No account? Sign up</string>
+        <string name="sign_up">Already have an account? Sign In</string>
+        <string name="consent">By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use.</string>
+
+    </resources>
+
     <string name="app_name">Schedule App</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
