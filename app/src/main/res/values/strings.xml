@@ -1,6 +1,5 @@
 <resources>
 
-    <resources>
         <string name="app_name">Carveal App</string>
         <string name="title_activity_landing_page">LandingPage</string>
 
@@ -74,9 +73,7 @@
         <string name="sign_up">Already have an account? Sign In</string>
         <string name="consent">By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use.</string>
 
-    </resources>
 
-    <string name="app_name">Schedule App</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
     <string-array name="locations">
