@@ -22,7 +22,7 @@ public class Loading_page extends AppCompatActivity {
         videoView.start();
 
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(Loading_page.this, sign_in_page.class);
+            Intent intent = new Intent(Loading_page.this, SigninActivity.class);
             startActivity(intent);
             finish();
         }, 3000);

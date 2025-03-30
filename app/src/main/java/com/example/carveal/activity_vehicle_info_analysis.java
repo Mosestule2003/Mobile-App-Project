@@ -28,7 +28,10 @@ public class activity_vehicle_info_analysis extends AppCompatActivity {
     private static final String API_URL = "https://api.aimlapi.com/v1/chat/completions";
     private static final String API_KEY = "cbebe2cb52ba401e8053fa0e12067b46";
     private Button btnCancel, btnConfirm;
-    private TextView modelText, yearText, transmissionText, fuelText, concernsText;
+    private TextView modelText, yearText, transmissionText, fuelText, concernsText,
+                    priceText, mileageText;
+
+    int carImageID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,16 @@ public class activity_vehicle_info_analysis extends AppCompatActivity {
             return insets;
         });
 
+        Intent intent = getIntent();
+        String carModel = intent.getStringExtra("CAR_MODEL");
+        String carPrice = intent.getStringExtra("CAR_PRICE");
+        String carLocation = intent.getStringExtra("CAR_LOCATION");
+        String carMileage = intent.getStringExtra("CAR_MILEAGE");
+        String carYear = intent.getStringExtra("CAR_YEAR");
+        String carTransmission = intent.getStringExtra("CAR_TRANSMISSION");
+        String carFuel = intent.getStringExtra("CAR_FUEL");
+        carImageID = intent.getIntExtra("CAR_IMAGE", 0);
+
         modelText = findViewById(R.id.modelText);
         yearText = findViewById(R.id.yearText);
         transmissionText = findViewById(R.id.transmissionText);
@@ -48,6 +61,20 @@ public class activity_vehicle_info_analysis extends AppCompatActivity {
         concernsText = findViewById(R.id.concernsText);
         btnCancel = findViewById(R.id.btnCancel);
         btnConfirm = findViewById(R.id.btnConfirm);
+        priceText = findViewById(R.id.priceText);
+        mileageText = findViewById(R.id.mileageText);
+
+
+
+        modelText.setText(carModel);
+        yearText.setText(carYear);
+        transmissionText.setText(carTransmission);
+        fuelText.setText(carFuel);
+        priceText.setText(carPrice);
+        mileageText.setText(carMileage);
+
+
+
 
         fetchPotentialConcerns();
     }
@@ -124,6 +151,21 @@ public class activity_vehicle_info_analysis extends AppCompatActivity {
 
         btnConfirm.setOnClickListener(v -> {
             Intent paymentIntent = new Intent(activity_vehicle_info_analysis.this, activity_schedule.class);
+            paymentIntent.putExtra("CAR_MODEL",modelText.getText().toString());
+
+            paymentIntent.putExtra("CAR_PRICE", "$ " + priceText.getText().toString());
+
+            paymentIntent.putExtra("CAR_LOCATION", "Kamloops");
+
+            paymentIntent.putExtra("CAR_MILEAGE", modelText.getText().toString());
+
+            paymentIntent.putExtra("CAR_YEAR", "2021");
+
+            paymentIntent.putExtra("CAR_TRANSMISSION", "Automatic");
+
+            paymentIntent.putExtra("CAR_FUEL", "Gasoline");
+
+            paymentIntent.putExtra("CAR_IMAGE", carImageID);
             startActivity(paymentIntent);
             finish();
         });

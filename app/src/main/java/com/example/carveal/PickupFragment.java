@@ -45,9 +45,14 @@ public class PickupFragment extends Fragment {
             String[] models = getResources().getStringArray(R.array.model);
             String[] mileages = getResources().getStringArray(R.array.mileage);
             String[] prices = getResources().getStringArray(R.array.price);
+            String[] years = getResources().getStringArray(R.array.year);
+            String[] transmission = getResources().getStringArray(R.array.transmission);
+            String[] fuels = getResources().getStringArray(R.array.fuel);
+            String[] locations = getResources().getStringArray(R.array.location);
 
             for (int i = 0; i < models.length; i++) {
-                carModels.add(new CarModel(models[i], imageID[i],
+                carModels.add(new CarModel(models[i], years[i], fuels[i], transmission[i],
+                        locations[i], imageID[i],
                         Integer.parseInt(mileages[i]),
                         Integer.parseInt(prices[i])));
             }

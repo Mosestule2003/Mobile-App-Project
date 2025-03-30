@@ -17,6 +17,30 @@
             <item>2013 BMW 3 Series 328i xDrive Sedan AWD</item>
         </string-array>
 
+        <string-array name="year">
+            <item>2021</item>
+            <item>2021</item>
+            <item>2013</item>
+        </string-array>
+
+        <string-array name="transmission">
+            <item>Automatic</item>
+            <item>Automatic</item>
+            <item>Automatic/Manual Shift</item>
+        </string-array>
+
+        <string-array name="location">
+            <item>Kamloops, BC</item>
+            <item>Kelowna, BC</item>
+            <item>Vancouver, BC</item>
+        </string-array>
+
+        <string-array name="fuel">
+            <item>Gasoline</item>
+            <item>Gasoline</item>
+            <item>Gasoline</item>
+        </string-array>
+
         <string-array name="mileage">
             <item>28390</item>
             <item>91472</item>

@@ -49,15 +49,16 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
 
                 intent.putExtra("CAR_PRICE", "$ " + carModels.get(position).getPrice());
 
-                intent.putExtra("CAR_LOCATION", "Kamloops");
+                intent.putExtra("CAR_LOCATION", carModels.get(position).getLocation());
 
                 intent.putExtra("CAR_MILEAGE", carModels.get(position).getMileage() + " km");
 
-                intent.putExtra("CAR_YEAR", "2021");
+                intent.putExtra("CAR_YEAR", carModels.get(position).getYear());
 
-                intent.putExtra("CAR_TRANSMISSION", "Automatic");
+                intent.putExtra("CAR_TRANSMISSION", carModels.get(position).getTransmission());
 
-                intent.putExtra("CAR_FUEL", "Gasoline");
+                intent.putExtra("CAR_FUEL", carModels.get(position).getFuel());
+                intent.putExtra("CAR_IMAGE", carModels.get(position).getImage());
                 v.getContext().startActivity(intent);
             }
         });

@@ -17,6 +17,10 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class CarDetail extends AppCompatActivity {
     Button back, contact, purchase;
+    TextView modelTextView, priceTextView, locationTextView, mileageTextView, yearTextView,
+            transmissionTextView, fuelTextView;
+    ImageView carImage;
+    int carImageID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,60 +34,38 @@ public class CarDetail extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-
         String carModel = intent.getStringExtra("CAR_MODEL");
-
         String carPrice = intent.getStringExtra("CAR_PRICE");
-
         String carLocation = intent.getStringExtra("CAR_LOCATION");
-
         String carMileage = intent.getStringExtra("CAR_MILEAGE");
-
         String carYear = intent.getStringExtra("CAR_YEAR");
-
         String carTransmission = intent.getStringExtra("CAR_TRANSMISSION");
-
         String carFuel = intent.getStringExtra("CAR_FUEL");
+        carImageID = intent.getIntExtra("CAR_IMAGE", 0);
 
-        int carImageID = intent.getIntExtra("CAR_IMAGE", 0);
 
-
-        TextView modelTextView = findViewById(R.id.model);
-
+        modelTextView = findViewById(R.id.model);
         modelTextView.setText(carModel);
 
-
-
-        TextView priceTextView = findViewById(R.id.price);
-
+        priceTextView = findViewById(R.id.price);
         priceTextView.setText(carPrice);
 
-
-
-        TextView locationTextView = findViewById(R.id.location);
-
+        locationTextView = findViewById(R.id.location);
         locationTextView.setText(carLocation);
 
-
-
-        TextView mileageTextView = findViewById(R.id.car_mileage);
-
+        mileageTextView = findViewById(R.id.car_mileage);
         mileageTextView.setText(carMileage);
 
-
-
-        TextView yearTextView = findViewById(R.id.car_year);
+        yearTextView = findViewById(R.id.car_year);
         yearTextView.setText(carYear);
 
-
-
-        TextView transmissionTextView = findViewById(R.id.car_transmission);
+        transmissionTextView = findViewById(R.id.car_transmission);
         transmissionTextView.setText(carTransmission);
 
-        TextView fuelTextView = findViewById(R.id.car_fuel);
+        fuelTextView = findViewById(R.id.car_fuel);
         fuelTextView.setText(carFuel);
 
-        ImageView carImage = findViewById(R.id.car_image);
+        carImage = findViewById(R.id.car_image);
         carImage.setImageResource(carImageID);
 
 
@@ -113,7 +95,24 @@ public class CarDetail extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //start intent schedule viewing
-                        Intent intent1 = new Intent(v.getContext(), activity_vehicle_info_analysis.class);
+                        Intent infoIntent = new Intent(v.getContext(), activity_vehicle_info_analysis.class);
+                        infoIntent.putExtra("CAR_MODEL",modelTextView.getText().toString());
+
+                        infoIntent.putExtra("CAR_PRICE", "$ " + priceTextView.getText().toString());
+
+                        infoIntent.putExtra("CAR_LOCATION", "Kamloops");
+
+                        infoIntent.putExtra("CAR_MILEAGE", modelTextView.getText().toString());
+
+                        infoIntent.putExtra("CAR_YEAR", "2021");
+
+                        infoIntent.putExtra("CAR_TRANSMISSION", "Automatic");
+
+                        infoIntent.putExtra("CAR_FUEL", "Gasoline");
+
+                        infoIntent.putExtra("CAR_IMAGE", carImageID);
+
+                        startActivity(infoIntent);
 
                     }
                 });
@@ -138,6 +137,24 @@ public class CarDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //start intent purchase
+                Intent infoIntent = new Intent(v.getContext(), activity_vehicle_info_analysis.class);
+                infoIntent.putExtra("CAR_MODEL",modelTextView.getText().toString());
+
+                infoIntent.putExtra("CAR_PRICE", "$ " + priceTextView.getText().toString());
+
+                infoIntent.putExtra("CAR_LOCATION", "Kamloops");
+
+                infoIntent.putExtra("CAR_MILEAGE", modelTextView.getText().toString());
+
+                infoIntent.putExtra("CAR_YEAR", "2021");
+
+                infoIntent.putExtra("CAR_TRANSMISSION", "Automatic");
+
+                infoIntent.putExtra("CAR_FUEL", "Gasoline");
+
+                infoIntent.putExtra("CAR_IMAGE", carImageID);
+
+                startActivity(infoIntent);
             }
         });
 
