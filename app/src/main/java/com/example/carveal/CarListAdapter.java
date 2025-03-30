@@ -58,6 +58,8 @@ public class CarListAdapter extends RecyclerView.Adapter<CarListAdapter.CarViewH
                 intent.putExtra("CAR_TRANSMISSION", "Automatic");
 
                 intent.putExtra("CAR_FUEL", "Gasoline");
+
+                intent.putExtra("CAR_IMAGE", carModels.get(position).getImage());
                 v.getContext().startActivity(intent);
             }
         });

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -44,6 +45,8 @@ public class CarDetail extends AppCompatActivity {
 
         String carFuel = intent.getStringExtra("CAR_FUEL");
 
+        int carImageID = intent.getIntExtra("CAR_IMAGE", 0);
+
 
         TextView modelTextView = findViewById(R.id.model);
 
@@ -70,20 +73,18 @@ public class CarDetail extends AppCompatActivity {
 
 
         TextView yearTextView = findViewById(R.id.car_year);
-
         yearTextView.setText(carYear);
 
 
 
         TextView transmissionTextView = findViewById(R.id.car_transmission);
-
         transmissionTextView.setText(carTransmission);
 
-
-
         TextView fuelTextView = findViewById(R.id.car_fuel);
-
         fuelTextView.setText(carFuel);
+
+        ImageView carImage = findViewById(R.id.car_image);
+        carImage.setImageResource(carImageID);
 
 
         back = findViewById(R.id.button);
