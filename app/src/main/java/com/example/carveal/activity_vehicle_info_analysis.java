@@ -32,6 +32,7 @@ public class activity_vehicle_info_analysis extends AppCompatActivity {
                     priceText, mileageText;
 
     int carImageID;
+    String carLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class activity_vehicle_info_analysis extends AppCompatActivity {
         Intent intent = getIntent();
         String carModel = intent.getStringExtra("CAR_MODEL");
         String carPrice = intent.getStringExtra("CAR_PRICE");
-        String carLocation = intent.getStringExtra("CAR_LOCATION");
+        carLocation = intent.getStringExtra("CAR_LOCATION");
         String carMileage = intent.getStringExtra("CAR_MILEAGE");
         String carYear = intent.getStringExtra("CAR_YEAR");
         String carTransmission = intent.getStringExtra("CAR_TRANSMISSION");
@@ -72,6 +73,7 @@ public class activity_vehicle_info_analysis extends AppCompatActivity {
         fuelText.setText(carFuel);
         priceText.setText(carPrice);
         mileageText.setText(carMileage);
+
 
 
 
@@ -153,17 +155,17 @@ public class activity_vehicle_info_analysis extends AppCompatActivity {
             Intent paymentIntent = new Intent(activity_vehicle_info_analysis.this, activity_schedule.class);
             paymentIntent.putExtra("CAR_MODEL",modelText.getText().toString());
 
-            paymentIntent.putExtra("CAR_PRICE", "$ " + priceText.getText().toString());
+            paymentIntent.putExtra("CAR_PRICE", priceText.getText().toString());
 
-            paymentIntent.putExtra("CAR_LOCATION", "Kamloops");
+            paymentIntent.putExtra("CAR_LOCATION", carLocation);
 
             paymentIntent.putExtra("CAR_MILEAGE", modelText.getText().toString());
 
-            paymentIntent.putExtra("CAR_YEAR", "2021");
+            paymentIntent.putExtra("CAR_YEAR", yearText.getText().toString());
 
-            paymentIntent.putExtra("CAR_TRANSMISSION", "Automatic");
+            paymentIntent.putExtra("CAR_TRANSMISSION", transmissionText.getText().toString());
 
-            paymentIntent.putExtra("CAR_FUEL", "Gasoline");
+            paymentIntent.putExtra("CAR_FUEL", fuelText.getText().toString());
 
             paymentIntent.putExtra("CAR_IMAGE", carImageID);
             startActivity(paymentIntent);

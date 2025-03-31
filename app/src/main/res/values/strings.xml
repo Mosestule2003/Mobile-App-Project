@@ -13,13 +13,13 @@
 
         <string-array name="model">
             <item>2021 Mazda CX-3 GS AWD</item>
-            <item>2021 2017 Land Rover Range Rover Evoque SE</item>
+            <item>2017 Land Rover Range Rover Evoque SE</item>
             <item>2013 BMW 3 Series 328i xDrive Sedan AWD</item>
         </string-array>
 
         <string-array name="year">
             <item>2021</item>
-            <item>2021</item>
+            <item>2017</item>
             <item>2013</item>
         </string-array>
 

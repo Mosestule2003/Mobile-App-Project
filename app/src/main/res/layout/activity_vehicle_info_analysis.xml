@@ -78,7 +78,6 @@
                 android:padding="4dp"/>
             <TextView
                 android:id="@+id/mileageText"
-
                 android:text="28,390 km"
                 android:padding="4dp"/>
 

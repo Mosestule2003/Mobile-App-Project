@@ -98,17 +98,17 @@ public class CarDetail extends AppCompatActivity {
                         Intent infoIntent = new Intent(v.getContext(), activity_vehicle_info_analysis.class);
                         infoIntent.putExtra("CAR_MODEL",modelTextView.getText().toString());
 
-                        infoIntent.putExtra("CAR_PRICE", "$ " + priceTextView.getText().toString());
+                        infoIntent.putExtra("CAR_PRICE", priceTextView.getText().toString());
 
-                        infoIntent.putExtra("CAR_LOCATION", "Kamloops");
+                        infoIntent.putExtra("CAR_LOCATION", locationTextView.getText().toString());
 
-                        infoIntent.putExtra("CAR_MILEAGE", modelTextView.getText().toString());
+                        infoIntent.putExtra("CAR_MILEAGE", mileageTextView.getText().toString());
 
-                        infoIntent.putExtra("CAR_YEAR", "2021");
+                        infoIntent.putExtra("CAR_YEAR", yearTextView.getText().toString());
 
-                        infoIntent.putExtra("CAR_TRANSMISSION", "Automatic");
+                        infoIntent.putExtra("CAR_TRANSMISSION", transmissionTextView.getText().toString());
 
-                        infoIntent.putExtra("CAR_FUEL", "Gasoline");
+                        infoIntent.putExtra("CAR_FUEL", fuelTextView.getText().toString());
 
                         infoIntent.putExtra("CAR_IMAGE", carImageID);
 
@@ -140,17 +140,17 @@ public class CarDetail extends AppCompatActivity {
                 Intent infoIntent = new Intent(v.getContext(), activity_vehicle_info_analysis.class);
                 infoIntent.putExtra("CAR_MODEL",modelTextView.getText().toString());
 
-                infoIntent.putExtra("CAR_PRICE", "$ " + priceTextView.getText().toString());
+                infoIntent.putExtra("CAR_PRICE", priceTextView.getText().toString());
 
-                infoIntent.putExtra("CAR_LOCATION", "Kamloops");
+                infoIntent.putExtra("CAR_LOCATION", locationTextView.getText().toString());
 
-                infoIntent.putExtra("CAR_MILEAGE", modelTextView.getText().toString());
+                infoIntent.putExtra("CAR_MILEAGE", mileageTextView.getText().toString());
 
-                infoIntent.putExtra("CAR_YEAR", "2021");
+                infoIntent.putExtra("CAR_YEAR", yearTextView.getText().toString());
 
-                infoIntent.putExtra("CAR_TRANSMISSION", "Automatic");
+                infoIntent.putExtra("CAR_TRANSMISSION", transmissionTextView.getText().toString());
 
-                infoIntent.putExtra("CAR_FUEL", "Gasoline");
+                infoIntent.putExtra("CAR_FUEL", fuelTextView.getText().toString());
 
                 infoIntent.putExtra("CAR_IMAGE", carImageID);
 

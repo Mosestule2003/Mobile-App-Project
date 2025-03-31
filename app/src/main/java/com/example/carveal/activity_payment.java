@@ -61,7 +61,8 @@ public class activity_payment extends AppCompatActivity {
         });
 
         confirmPayment.setOnClickListener(v -> {
-            Intent confirmIntent = new Intent(activity_payment.this, activity_notification.class);
+            Intent confirmIntent = new Intent(activity_payment.this, MainActivity.class);
+            confirmIntent.putExtra("TAB_POSITION", 2);
             startActivity(confirmIntent);
             finish();
         });

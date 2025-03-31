@@ -20,7 +20,8 @@ public class activity_schedule extends Activity {
     private RadioGroup timeGroup;
     private Spinner spinnerLocation;
     private String selectedDate, selectedTime, selectedLocation;
-
+    String carModel, carPrice, carLocation, carMileage, carYear, carTransmission, carFuel;
+    int carImageID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,16 @@ public class activity_schedule extends Activity {
         calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
             selectedDate = String.format(Locale.getDefault(), "%02d/%02d/%d", dayOfMonth, month + 1, year);
         });
+
+        Intent frontIntent = getIntent();
+        carModel = frontIntent.getStringExtra("CAR_MODEL");
+        carPrice = frontIntent.getStringExtra("CAR_PRICE");
+        carLocation = frontIntent.getStringExtra("CAR_LOCATION");
+        carMileage = frontIntent.getStringExtra("CAR_MILEAGE");
+        carYear = frontIntent.getStringExtra("CAR_YEAR");
+        carTransmission = frontIntent.getStringExtra("CAR_TRANSMISSION");
+        carFuel = frontIntent.getStringExtra("CAR_FUEL");
+        carImageID = frontIntent.getIntExtra("CAR_IMAGE", 0);
 
         // Setup Spinner for Location
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -61,6 +72,22 @@ public class activity_schedule extends Activity {
 
             intent.putExtra("base_price", 80000);
             intent.putExtra("service_charge", 5000);
+
+            intent.putExtra("CAR_MODEL",carModel);
+
+            intent.putExtra("CAR_PRICE", carPrice);
+
+            intent.putExtra("CAR_LOCATION", carLocation);
+
+            intent.putExtra("CAR_MILEAGE", carMileage);
+
+            intent.putExtra("CAR_YEAR", carYear);
+
+            intent.putExtra("CAR_TRANSMISSION", carTransmission);
+
+            intent.putExtra("CAR_FUEL", carFuel);
+
+            intent.putExtra("CAR_IMAGE", carImageID);
 
             startActivity(intent);
         });

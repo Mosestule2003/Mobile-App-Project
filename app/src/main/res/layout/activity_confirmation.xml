@@ -53,6 +53,7 @@
                 android:layout_marginBottom="16dp">
 
                 <ImageView
+                    android:id="@+id/carImage"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:src="@drawable/car"
@@ -65,6 +66,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/modelText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Toyota Prado DLX"
@@ -72,6 +74,7 @@
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/priceText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="$80,000"
@@ -180,6 +183,7 @@
                     android:text="Price"
                     android:textSize="16sp"/>
                 <TextView
+                    android:id="@+id/priceText2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="$80,000"
@@ -193,6 +197,7 @@
                     android:textSize="16sp"
                     android:layout_marginTop="8dp"/>
                 <TextView
+                    android:id="@+id/chargeText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="$5,000"
@@ -207,6 +212,7 @@
                     android:textStyle="bold"
                     android:layout_marginTop="8dp"/>
                 <TextView
+                    android:id="@+id/totalText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="$85,000"
