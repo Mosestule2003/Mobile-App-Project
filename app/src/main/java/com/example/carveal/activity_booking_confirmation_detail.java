@@ -67,6 +67,5 @@ public class activity_booking_confirmation_detail extends Activity {
             startActivity(backIntent);
             finish();
         });
-
     }
 }

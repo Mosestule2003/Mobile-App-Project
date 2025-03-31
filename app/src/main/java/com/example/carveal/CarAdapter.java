@@ -47,7 +47,7 @@ public class CarAdapter extends RecyclerView.Adapter<CarAdapter.CarViewHolder> {
                 Intent intent = new Intent(v.getContext(), CarDetail.class);
                 intent.putExtra("CAR_MODEL", carModels.get(position).getModel());
 
-                intent.putExtra("CAR_PRICE", "$ " + carModels.get(position).getPrice());
+                intent.putExtra("CAR_PRICE", "$" + carModels.get(position).getPrice());
 
                 intent.putExtra("CAR_LOCATION", carModels.get(position).getLocation());
 

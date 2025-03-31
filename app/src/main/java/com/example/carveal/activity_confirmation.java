@@ -15,7 +15,6 @@ public class activity_confirmation extends Activity {
     private TextView txtDate, txtTime, txtLocation;
     private Button btnCancel, btnConfirm;
     private ImageButton btnBack;
-
     int carImageID;
     ImageView carImage;
     TextView modelText, priceText, priceText2, chargeText, totalText;
