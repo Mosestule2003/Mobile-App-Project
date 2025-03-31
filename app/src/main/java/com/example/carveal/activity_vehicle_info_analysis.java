@@ -28,6 +28,8 @@ public class activity_vehicle_info_analysis extends AppCompatActivity {
     private static final String API_URL = "https://api.aimlapi.com/v1/chat/completions";
     private static final String API_KEY = "cbebe2cb52ba401e8053fa0e12067b46";
     private Button btnCancel, btnConfirm;
+
+    private ImageButton btnBack;
     private TextView modelText, yearText, transmissionText, fuelText, concernsText,
                     priceText, mileageText;
 
@@ -63,6 +65,7 @@ public class activity_vehicle_info_analysis extends AppCompatActivity {
         btnCancel = findViewById(R.id.btnCancel);
         btnConfirm = findViewById(R.id.btnConfirm);
         priceText = findViewById(R.id.priceText);
+        btnBack = findViewById(R.id.btnBack);
         mileageText = findViewById(R.id.mileageText);
 
 
@@ -169,6 +172,12 @@ public class activity_vehicle_info_analysis extends AppCompatActivity {
 
             paymentIntent.putExtra("CAR_IMAGE", carImageID);
             startActivity(paymentIntent);
+            finish();
+        });
+
+        btnBack.setOnClickListener(v -> {
+            Intent backIntent = new Intent(activity_vehicle_info_analysis.this, CarDetail.class);
+            startActivity(backIntent);
             finish();
         });
     }

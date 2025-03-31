@@ -82,11 +82,28 @@ public class activity_confirmation extends Activity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent confirmIntent = new Intent(activity_confirmation.this, activity_booking_confirmation_detail.class);
+
+                confirmIntent.putExtra("date", txtDate.getText().toString());
+                confirmIntent.putExtra("time", txtTime.getText().toString());
+                confirmIntent.putExtra("location", txtLocation.getText().toString());
+                confirmIntent.putExtra("CAR_MODEL", modelText.getText().toString());
+                confirmIntent.putExtra("CAR_PRICE", carPrice);
+                confirmIntent.putExtra("CAR_LOCATION", txtLocation.getText().toString());
+                confirmIntent.putExtra("CAR_MILEAGE", "Mileage Data Here");
+                confirmIntent.putExtra("CAR_YEAR", "Year Data Here");
+                confirmIntent.putExtra("CAR_TRANSMISSION", "Transmission Data Here");
+                confirmIntent.putExtra("CAR_FUEL", "Fuel Data Here");
+                confirmIntent.putExtra("CAR_IMAGE", carImageID);
+
+                startActivity(confirmIntent);
+
                 Intent paymentIntent = new Intent(activity_confirmation.this, activity_payment.class);
-            startActivity(paymentIntent);
-            finish();
+                startActivity(paymentIntent);
+                finish();
             }
         });
+
 
     }
 

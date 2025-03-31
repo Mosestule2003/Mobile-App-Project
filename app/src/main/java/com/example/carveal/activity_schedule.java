@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -19,6 +20,8 @@ public class activity_schedule extends Activity {
     private CalendarView calendarView;
     private RadioGroup timeGroup;
     private Spinner spinnerLocation;
+
+    private ImageButton btnBack;
     private String selectedDate, selectedTime, selectedLocation;
     String carModel, carPrice, carLocation, carMileage, carYear, carTransmission, carFuel;
     int carImageID;
@@ -29,6 +32,7 @@ public class activity_schedule extends Activity {
 
         calendarView = findViewById(R.id.calendarView);
         timeGroup = findViewById(R.id.timeGroup);
+        btnBack = findViewById(R.id.btnBack);
         spinnerLocation = findViewById(R.id.spinnerLocation);
 
         selectedDate = new java.text.SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
@@ -87,10 +91,18 @@ public class activity_schedule extends Activity {
             intent.putExtra("CAR_IMAGE", carImageID);
 
             startActivity(intent);
+
+        });
+
+        btnBack.setOnClickListener(v -> {
+            Intent backIntent = new Intent(activity_schedule.this, activity_vehicle_info_analysis.class);
+            startActivity(backIntent);
+            finish();
         });
 
         findViewById(R.id.btnCancel).setOnClickListener(v -> finish());
     }
+
 
     private void getSelectedTime() {
         int selectedId = timeGroup.getCheckedRadioButtonId();
