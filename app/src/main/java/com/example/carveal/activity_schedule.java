@@ -70,9 +70,6 @@ public class activity_schedule extends Activity {
             intent.putExtra("time", selectedTime);
             intent.putExtra("location", selectedLocation);
 
-            intent.putExtra("base_price", 80000);
-            intent.putExtra("service_charge", 5000);
-
             intent.putExtra("CAR_MODEL",carModel);
 
             intent.putExtra("CAR_PRICE", carPrice);
