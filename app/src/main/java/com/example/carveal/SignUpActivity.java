@@ -46,6 +46,9 @@ public class SignUpActivity extends AppCompatActivity {
                 }
                 else {
                     Toast.makeText(SignUpActivity.this, "Sign Up Successful", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(SignUpActivity.this, MainActivity.class);
+                    startActivity(i);
+                    finish();
                 }
             }
         });
