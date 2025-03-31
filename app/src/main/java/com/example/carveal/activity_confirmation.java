@@ -62,6 +62,9 @@ public class activity_confirmation extends Activity {
 
             PriceThread priceThread = new PriceThread();
             priceThread.start();
+            modelText.setText(carModel);
+            priceText2.setText(carPrice);
+            carImage.setImageResource(carImageID);
         }
 
         btnBack.setOnClickListener(v -> {
